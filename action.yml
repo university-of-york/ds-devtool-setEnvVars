@@ -1,0 +1,8 @@
+inputs:
+    envFile:
+        required: true
+name: 'Set env variables'
+description: 'Setting environment variables in the worklow'
+runs:
+    using: 'node12'
+    main: 'dist/index.js'

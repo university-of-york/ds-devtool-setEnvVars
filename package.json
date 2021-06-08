@@ -1,0 +1,26 @@
+{
+    "name": "ds-devtool-setEnvVars",
+    "version": "0.1.0",
+    "description": "Github action to set environment variables in a workflow",
+    "main": "src/index.js",
+    "scripts": {
+        "lint": "xo .",
+        "clean": "rm -rf ./dist",
+        "build": "ncc build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/university-of-york/esg-devtool-set-environment-variables.git"
+    },
+    "author": "University of York",
+    "license": "ISC",
+    "devDependencies": {
+        "@vercel/ncc": "^0.28.6",
+        "xo": "^0.40.1"
+    },
+    "dependencies": {
+        "@actions/core": "^1.3.0",
+        "dotenv": "^10.0.0",
+        "execa": "^5.1.0"
+    }
+}

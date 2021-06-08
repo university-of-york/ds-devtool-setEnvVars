@@ -14,7 +14,7 @@ The env files should be at the root of the project.
 1.  Use the checked out action in your worflow:
 
         - name: Set staging env vars
-          uses: actions/setEnvVars@v1
+          uses: university-of-york/ds-devtool-setEnvVars@v1
           with:
             envFile: 'staging.env'
 
@@ -23,7 +23,7 @@ The env files should be at the root of the project.
 Any secrets defined as environment variables when using action are setup as environment varaibles to the steps in the workflow. This does not reveal the value of the secret. An example of using secrets is as follows:
 
         - name: Set staging env vars
-          uses: actions/setEnvVars@v1
+          uses: university-of-york/ds-devtool-setEnvVars@v1
           with:
             envFile: 'staging.env'
           env:

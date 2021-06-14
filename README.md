@@ -7,7 +7,6 @@ This is a Github action that sets environment variables for a `Job` in a workflo
 The action has a required input called `envFile`. This sets the path to the file containing the environment variables to set for e.g. `staging.env`.
 
 This action reads all variable defined in a file and makes them available as environment variables to the workflow steps. In the above example, variables defined in `staging.env` will be setup as environment varaibles.
-The env files should be at the root of the project.
 
 ### In the workflow.yml
 

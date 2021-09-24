@@ -10,7 +10,7 @@ This action reads all variable defined in a file and makes them available as env
 
 ### In the workflow.yml
 
-1.  Use the checked out action in your worflow:
+1.  Use the checked out action in your workflow:
 
         - name: Set staging env vars
           uses: university-of-york/ds-devtool-setEnvVars@v1
@@ -19,7 +19,7 @@ This action reads all variable defined in a file and makes them available as env
 
 ### Using secrets with this action
 
-Any secrets defined as environment variables when using action are setup as environment varaibles to the steps in the workflow. This does not reveal the value of the secret. An example of using secrets is as follows:
+Any secrets defined as environment variables when using action are setup as environment variables to the steps in the workflow. This does not reveal the value of the secret. An example of using secrets is as follows:
 
         - name: Set staging env vars
           uses: university-of-york/ds-devtool-setEnvVars@v1
@@ -29,3 +29,16 @@ Any secrets defined as environment variables when using action are setup as envi
               MY_SECRET: ${{secrets.MY_SECRET}}
 
 The secret can then be used in the workflow steps as `$MY_SECRET`.
+
+### Overwriting existing variables
+
+By default, this action will not replace environment variables that have been previously defined. You may change
+this by setting the `overwrite` flag:
+
+        - name: Set staging env vars
+          uses: university-of-york/ds-devtool-setEnvVars@v1
+          with:
+            envFile: 'staging.env'
+            overwrite: true
+          env:
+              MY_SECRET: ${{secrets.MY_SECRET}}

@@ -654,6 +654,7 @@ const fs = __nccwpck_require__(747);
 const path = __nccwpck_require__(622);
 
 const core = __nccwpck_require__(186);
+const dotenv = __nccwpck_require__(437);
 
 const envFile = core.getInput('envFile', { required: true });
 
@@ -661,7 +662,18 @@ if (!fs.existsSync(`${envFile}`)) {
     core.error(`${envFile} does not exist`);
 }
 
-__nccwpck_require__(437).config({ path: path.join(process.cwd(), `${envFile}`) });
+const envFilePath = path.join(process.cwd(), `${envFile}`);
+const overwrite = core.getBooleanInput('overwrite');
+
+if (overwrite) {
+    const envConfig = dotenv.parse(fs.readFileSync(envFilePath));
+
+    for (const key of envConfig) {
+        process.env[key] = envConfig[key];
+    }
+} else {
+    dotenv.config({ path: envFilePath });
+}
 
 try {
     // get env vars passed into this actions and add them to the repo env

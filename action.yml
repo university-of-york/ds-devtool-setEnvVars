@@ -1,6 +1,9 @@
 inputs:
     envFile:
         required: true
+    overwrite:
+        default: false
+        required: false
 name: 'Set env variables'
 description: 'Setting environment variables in the worklow'
 runs:

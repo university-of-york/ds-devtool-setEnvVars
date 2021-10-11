@@ -6,7 +6,8 @@
     "scripts": {
         "lint": "xo .",
         "clean": "rm -rf ./dist",
-        "build": "ncc build"
+        "build": "ncc build",
+        "test": "jest"
     },
     "repository": {
         "type": "git",
@@ -16,6 +17,7 @@
     "license": "ISC",
     "devDependencies": {
         "@vercel/ncc": "^0.28.6",
+        "jest": "^27.2.4",
         "xo": "^0.40.1"
     },
     "dependencies": {

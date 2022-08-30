@@ -5,7 +5,7 @@ inputs:
         default: false
         required: false
 name: 'Set env variables'
-description: 'Setting environment variables in the worklow'
+description: 'Setting environment variables in the workflow'
 runs:
-    using: 'node12'
+    using: 'node16'
     main: 'dist/index.js'

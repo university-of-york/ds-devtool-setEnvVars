@@ -1,5 +1,5 @@
 module.exports = {
-    extends: ['prettier'],
+    prettier: true,
     overrides: [
         {
             files: '**/*.test.js',
@@ -7,6 +7,9 @@ module.exports = {
         },
     ],
     rules: {
+        'n/prefer-global/process': 'off',
+        'unicorn/prefer-module': 'off',
+        'import/extensions': 'off',
         'capitalized-comments': 'off',
         camelcase: 'off',
         eqeqeq: ['error', 'smart'],

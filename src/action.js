@@ -26,9 +26,9 @@ const action = () => {
     try {
         // get env vars passed into this actions and add them to the repo env
         // so its available for the next steps
-        Object.entries(process.env).forEach(([key, value]) => {
-            return core.exportVariable(`${key}`, `${value}`);
-        });
+        for (const [key, value] of Object.entries(process.env)) {
+            core.exportVariable(`${key}`, `${value}`);
+        }
     } catch (error) {
         core.error(`Error ${error}`);
     }

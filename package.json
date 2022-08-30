@@ -18,7 +18,8 @@
     "devDependencies": {
         "@vercel/ncc": "^0.28.6",
         "jest": "^27.2.4",
-        "xo": "^0.40.1"
+        "prettier": "^2.7.1",
+        "xo": "^0.52.2"
     },
     "dependencies": {
         "@actions/core": "^1.6.0",

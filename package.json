@@ -23,8 +23,7 @@
     },
     "dependencies": {
         "@actions/core": "^1.6.0",
-        "dotenv": "^16.0.1",
-        "execa": "^5.1.0"
+        "dotenv": "^16.0.1"
     },
     "engines": {
         "node": "^16.16.0",

@@ -15,6 +15,7 @@ module.exports = {
         eqeqeq: ['error', 'smart'],
         indent: 'off',
         'unicorn/filename-case': 'off',
+        'unicorn/prefer-node-protocol': 'off',
     },
     space: true,
 };

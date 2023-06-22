@@ -22,7 +22,7 @@
         "xo": "^0.53.1"
     },
     "dependencies": {
-        "@actions/core": "^1.9.1",
+        "@actions/core": "^1.10.0",
         "dotenv": "^16.3.1"
     },
     "engines": {

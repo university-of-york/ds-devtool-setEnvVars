@@ -3014,7 +3014,6 @@ exports["default"] = _default;
 
 const fs = __nccwpck_require__(147);
 const path = __nccwpck_require__(17);
-
 const core = __nccwpck_require__(186);
 
 const action = () => {
@@ -3038,7 +3037,7 @@ const action = () => {
     }
 
     try {
-        // get env vars passed into this actions and add them to the repo env
+        // Get env vars passed into this actions and add them to the repo env
         // so its available for the next steps
         for (const [key, value] of Object.entries(process.env)) {
             core.exportVariable(`${key}`, `${value}`);

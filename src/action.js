@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-
 const core = require('@actions/core');
 
 const action = () => {
@@ -24,7 +23,7 @@ const action = () => {
     }
 
     try {
-        // get env vars passed into this actions and add them to the repo env
+        // Get env vars passed into this actions and add them to the repo env
         // so its available for the next steps
         for (const [key, value] of Object.entries(process.env)) {
             core.exportVariable(`${key}`, `${value}`);

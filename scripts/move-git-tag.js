@@ -12,9 +12,9 @@ const moveGitTag = async () => {
 
     console.warn(`Updating ${tagName} tag to latest commit...`);
     
-    await execa('git', ['push', '--delete', tagName]);
+    await execa('git', ['push', '--delete', 'origin', tagName]);
     await execa('git', ['tag', '-f', tagName]);
-    await execa('git', ['push', 'main', '--tags']);
+    await execa('git', ['push', 'origin', '--tags']);
 
     console.warn(`Done.`);
 };

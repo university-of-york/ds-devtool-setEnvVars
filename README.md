@@ -13,7 +13,7 @@ This action reads all variable defined in a file and makes them available as env
 1.  Use the checked out action in your workflow:
 
         - name: Set staging env vars
-          uses: university-of-york/ds-devtool-setEnvVars@v2.0.0
+          uses: university-of-york/ds-devtool-setEnvVars@v2
           with:
             envFile: 'staging.env'
 
@@ -22,7 +22,7 @@ This action reads all variable defined in a file and makes them available as env
 Any secrets defined as environment variables when using action are setup as environment variables to the steps in the workflow. This does not reveal the value of the secret. An example of using secrets is as follows:
 
         - name: Set staging env vars
-          uses: university-of-york/ds-devtool-setEnvVars@v2.0.0
+          uses: university-of-york/ds-devtool-setEnvVars@v2
           with:
             envFile: 'staging.env'
           env:
@@ -36,7 +36,7 @@ By default, this action will not replace environment variables that have been pr
 this by setting the `overwrite` flag:
 
         - name: Set staging env vars
-          uses: university-of-york/ds-devtool-setEnvVars@v2.0.0
+          uses: university-of-york/ds-devtool-setEnvVars@v2
           with:
             envFile: 'staging.env'
             overwrite: true

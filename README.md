@@ -42,3 +42,15 @@ this by setting the `overwrite` flag:
             overwrite: true
           env:
               MY_SECRET: ${{secrets.MY_SECRET}}
+
+## Developer notes
+
+Note that this action is manually released, you will need to perform the following;
+
+```shell
+npm run build
+# commit your changes
+npm version minor # or major, or patch depending on scope
+npm run move-major-tag
+# push the changes
+```

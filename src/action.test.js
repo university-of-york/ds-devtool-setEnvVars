@@ -1,19 +1,19 @@
 import process from 'node:process';
-import { jest } from '@jest/globals';
+import { describe, afterEach, it, expect, vi } from 'vitest';
 import core from '@actions/core';
 import { action } from './action.js';
 
 describe('setEnvVars', () => {
     afterEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
     });
 
     it('should error when the env does not exist', async () => {
-        core.getBooleanInput = jest.fn(() => true);
+        core.getBooleanInput = vi.fn(() => true);
 
-        core.getInput = jest.fn(() => '.env.test.missing');
+        core.getInput = vi.fn(() => '.env.test.missing');
 
-        core.error = jest.fn();
+        core.error = vi.fn();
 
         await action();
 
@@ -21,11 +21,11 @@ describe('setEnvVars', () => {
     });
 
     it('should load variables from the provided .env.test file', async () => {
-        core.exportVariable = jest.fn();
+        core.exportVariable = vi.fn();
 
-        core.getBooleanInput = jest.fn(() => false);
+        core.getBooleanInput = vi.fn(() => false);
 
-        core.getInput = jest.fn(() => '.env.test');
+        core.getInput = vi.fn(() => '.env.test');
 
         await action();
 
@@ -35,17 +35,17 @@ describe('setEnvVars', () => {
     });
 
     it('should not overwrite env variables by default', async () => {
-        core.exportVariable = jest.fn();
+        core.exportVariable = vi.fn();
 
-        core.getBooleanInput = jest.fn(() => false);
+        core.getBooleanInput = vi.fn(() => false);
 
-        core.getInput = jest.fn(() => '.env.test');
+        core.getInput = vi.fn(() => '.env.test');
 
         await action();
 
         expect(process.env.HELLO).toEqual('world');
 
-        core.getInput = jest.fn(() => '.env.test2');
+        core.getInput = vi.fn(() => '.env.test2');
 
         await action();
 
@@ -53,17 +53,17 @@ describe('setEnvVars', () => {
     });
 
     it('should overwrite environment variables with a flag', async () => {
-        core.exportVariable = jest.fn();
+        core.exportVariable = vi.fn();
 
-        core.getBooleanInput = jest.fn(() => true);
+        core.getBooleanInput = vi.fn(() => true);
 
-        core.getInput = jest.fn(() => '.env.test');
+        core.getInput = vi.fn(() => '.env.test');
 
         await action();
 
         expect(process.env.HELLO).toEqual('world');
 
-        core.getInput = jest.fn(() => '.env.test2');
+        core.getInput = vi.fn(() => '.env.test2');
 
         await action();
 

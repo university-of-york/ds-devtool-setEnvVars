@@ -16,6 +16,12 @@
         "move-major-tag": "node scripts/move-major-tag.js",
         "test": "jest"
     },
+    "prettier": {
+        "bracketSpacing": true,
+        "singleQuote": true,
+        "tabWidth": 4,
+        "trailingComma": "es5"
+    },
     "dependencies": {
         "@actions/core": "^1.10.0",
         "dotenv": "^16.3.1"

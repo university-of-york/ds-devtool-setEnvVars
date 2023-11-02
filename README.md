@@ -1,6 +1,6 @@
 # ds-devtool-setEnvVars
 
-This is a Github action that sets environment variables for a `Job` in a workflow.
+> GitHub action to set environment variables for a `Job` in a workflow.
 
 ## Usage
 

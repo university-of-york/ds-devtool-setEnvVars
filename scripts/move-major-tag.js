@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 
-const moveGitTag = require('./move-git-tag.js');
+import process from 'node:process';
+import { moveGitTag } from './move-git-tag.js';
 
-moveGitTag().catch((error) => {
+try {
+    await moveGitTag();
+} catch (error) {
     console.error(error);
     process.exitCode = 1;
-});
+}

@@ -1,11 +1,13 @@
 inputs:
     envFile:
+        description: The file to populate the environment with
         required: true
     overwrite:
-        default: false
+        description: Whether to overwrite existing environment variables or not
+        default: 'false'
         required: false
 name: 'Set env variables'
-description: 'Setting environment variables in the workflow'
+description: 'Set environment variables in the workflow'
 runs:
-    using: 'node16'
+    using: 'node20'
     main: 'dist/index.js'

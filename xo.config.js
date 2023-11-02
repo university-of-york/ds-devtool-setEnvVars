@@ -1,4 +1,4 @@
-module.exports = {
+const xoConfig = {
     prettier: true,
     overrides: [
         {
@@ -6,11 +6,7 @@ module.exports = {
             env: 'jest',
         },
     ],
-    rules: {
-        'n/prefer-global/process': 'off',
-        'unicorn/prefer-module': 'off',
-        'import/extensions': 'off',
-        'unicorn/prefer-node-protocol': 'off',
-    },
     space: true,
 };
+
+export default xoConfig;

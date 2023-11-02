@@ -1,7 +1,11 @@
-const execa = require('execa');
-const pkg = require('../package.json');
+import * as fs from 'node:fs/promises';
+import execa from 'execa';
 
-const moveGitTag = async () => {
+export async function moveGitTag() {
+    const pkg = JSON.parse(
+        await fs.readFile(new URL('../package.json', import.meta.url))
+    );
+
     const version = pkg.version.slice(0, pkg.version.indexOf('.'));
 
     if (!version) {
@@ -17,6 +21,4 @@ const moveGitTag = async () => {
     await execa('git', ['push', 'origin', '--tags']);
 
     console.warn(`Done.`);
-};
-
-module.exports = moveGitTag;
+}

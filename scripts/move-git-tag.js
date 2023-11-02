@@ -1,5 +1,5 @@
 import * as fs from 'node:fs/promises';
-import execa from 'execa';
+import { execa } from 'execa';
 
 export async function moveGitTag() {
     const pkg = JSON.parse(

@@ -2,46 +2,98 @@
 
 > GitHub action to set environment variables for a `Job` in a workflow.
 
-## Usage
+## Motivation
 
-The action has a required input called `envFile`. This sets the path to the file containing the environment variables to set for e.g. `staging.env`.
+This action provides support for loading a set of environment variables from a file of key value pairs such as the following:
 
-This action reads all variable defined in a file and makes them available as environment variables to the workflow steps. In the above example, variables defined in `staging.env` will be setup as environment varaibles.
+```dotenv
+DATABASE_NAME=production
+```
 
-### In the workflow.yml
+The initial intent of this action was to create a way of storing non-sensitive configuration variables that have different values per each environment that they are deployed to. It pre-dates GitHub's own [configuration variables] that can be stored per each GitHub environment.
 
-1.  Use the checked out action in your workflow:
+:warning: **For most use cases**, we recommend implementing [configuration variables] over using this action.
 
-        - name: Set staging env vars
-          uses: university-of-york/ds-devtool-setEnvVars@v2
-          with:
-            envFile: 'staging.env'
+## Using configuration variables
 
-### Using secrets with this action
+Imagine an action that deploys a service from GitHub to an external server.
 
-Any secrets defined as environment variables when using action are setup as environment variables to the steps in the workflow. This does not reveal the value of the secret. An example of using secrets is as follows:
+When using this action, the `DATABASE_NAME` is defined in one of three `.env` files and is passed through at deploy time:
 
-        - name: Set staging env vars
-          uses: university-of-york/ds-devtool-setEnvVars@v2
-          with:
-            envFile: 'staging.env'
-          env:
-              MY_SECRET: ${{secrets.MY_SECRET}}
+```yml
+jobs:
+    deploy:
+        name: 'Deploy to external server'
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                environment: ['dev', 'staging', 'prod']
+        environment: ${{ matrix.environment }}
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 20
+            - run: npm ci
+            - uses: university-of-york/ds-devtool-setEnvVars@v3
+              with:
+                  envFile: .env.${{ matrix.environment }}
+            - run: npm run deploy
+              env:
+                  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+                  EXTERNAL_SERVER: ${{ matrix.environment }}
+```
 
-The secret can then be used in the workflow steps as `$MY_SECRET`.
+Instead, by storing the `DATABASE_NAME` in [configuration variables] for each of our three environments, we can pass the variable directly to our deployment step:
+
+```yml
+jobs:
+    deploy:
+        name: 'Deploy to external server'
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                environment: ['dev', 'staging', 'prod']
+        environment: ${{ matrix.environment }}
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 20
+            - run: npm ci
+            - run: npm run deploy
+              env:
+                  DATABASE_NAME: ${{ vars.DATABASE_NAME }}
+                  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+                  EXTERNAL_SERVER: ${{ matrix.environment }}
+```
+
+One advantage to this, other than dropping the dependency, is that the whole configuration is defined in one place. We can mix variables, secrets, and static configuration without worrying about which ones can go in the external file and which ones cannot.
+
+## Using this action
+
+The action requires an `envFile` input, which is a text file containing one or more key value pairs. The path to this is resolved from the current working directory.
+
+For example, to populate the environment with variables from a `staging.env` file located in the root you would configure this action as follows:
+
+```yml
+- name: Set staging env vars
+  uses: university-of-york/ds-devtool-setEnvVars@v3
+  with:
+      envFile: 'staging.env'
+```
 
 ### Overwriting existing variables
 
-By default, this action will not replace environment variables that have been previously defined. You may change
-this by setting the `overwrite` flag:
+By default, this action will not replace environment variables that have been previously defined. You may change this by setting the `overwrite` flag:
 
-        - name: Set staging env vars
-          uses: university-of-york/ds-devtool-setEnvVars@v2
-          with:
-            envFile: 'staging.env'
-            overwrite: true
-          env:
-              MY_SECRET: ${{secrets.MY_SECRET}}
+```yml
+- name: Set staging env vars
+  uses: university-of-york/ds-devtool-setEnvVars@v3
+  with:
+      envFile: 'staging.env'
+      overwrite: true
+```
 
 ## Developer notes
 
@@ -54,3 +106,5 @@ npm version minor # or major, or patch depending on scope
 npm run move-major-tag
 # push the changes
 ```
+
+[configuration variables]: https://docs.github.com/en/actions/learn-github-actions/variables#using-the-vars-context-to-access-configuration-variable-values

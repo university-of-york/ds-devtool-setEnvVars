@@ -2,11 +2,11 @@ import * as fs from 'node:fs/promises';
 import { execa } from 'execa';
 
 export async function moveGitTag() {
-    const pkg = JSON.parse(
+    const packageJson = JSON.parse(
         await fs.readFile(new URL('../package.json', import.meta.url))
     );
 
-    const version = pkg.version.slice(0, pkg.version.indexOf('.'));
+    const version = semverMajor(packageJson.version)
 
     if (!version) {
         throw new Error(`Could not find major version from ${version}.`);
@@ -21,4 +21,8 @@ export async function moveGitTag() {
     await execa('git', ['push', 'origin', '--tags']);
 
     console.warn(`Done.`);
+}
+
+function semverMajor (version) {
+    return version.slice(0, version.indexOf('.'))
 }

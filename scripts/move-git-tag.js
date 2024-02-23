@@ -6,7 +6,7 @@ export async function moveGitTag() {
         await fs.readFile(new URL('../package.json', import.meta.url))
     );
 
-    const version = semverMajor(packageJson.version)
+    const version = semverMajor(packageJson.version);
 
     if (!version) {
         throw new Error(`Could not find major version from ${version}.`);
@@ -23,6 +23,6 @@ export async function moveGitTag() {
     console.warn(`Done.`);
 }
 
-function semverMajor (version) {
-    return version.slice(0, version.indexOf('.'))
+function semverMajor(version) {
+    return version.slice(0, version.indexOf('.'));
 }

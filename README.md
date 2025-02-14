@@ -108,3 +108,9 @@ npm run move-major-tag
 ```
 
 [configuration variables]: https://docs.github.com/en/actions/learn-github-actions/variables#using-the-vars-context-to-access-configuration-variable-values
+
+## Repository visibility
+
+This repository is intentionally public to allow this action to be published on the GitHub marketplace.
+
+However, we are now recommending that GitHub's configuration variables should be used instead of this action, so this action may be made private or retired altogether within the next year.

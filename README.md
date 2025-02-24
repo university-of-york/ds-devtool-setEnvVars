@@ -2,6 +2,13 @@
 
 > GitHub action to set environment variables for a `Job` in a workflow.
 
+-   Repo-Status: Active
+-   Repo-Contents: Library
+-   Repo-Service-Name: setEnvVars devtool
+-   Repo-Ownership-Rating: 3
+-   Repo-Quality-Rating: 4
+-   Repo-Next-Review-Due: 2026-02-19
+
 ## Motivation
 
 This action provides support for loading a set of environment variables from a file of key value pairs such as the following:

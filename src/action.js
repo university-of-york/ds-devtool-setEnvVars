@@ -7,8 +7,8 @@ import dotenv from 'dotenv';
 export async function action() {
     core.warning(
         'Deprecation notice: This action is being deprecated and may be removed in the future. ' +
-        'Please use GitHub configuration variables instead. ' +
-        'See: https://docs.github.com/en/actions/learn-github-actions/variables#using-the-vars-context-to-access-configuration-variable-values'
+            'Please use GitHub configuration variables instead. ' +
+            'See: https://docs.github.com/en/actions/learn-github-actions/variables#using-the-vars-context-to-access-configuration-variable-values'
     );
 
     const envFile = core.getInput('envFile', { required: true });

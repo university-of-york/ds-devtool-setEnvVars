@@ -1,6 +1,6 @@
 {
     "name": "ds-devtool-setEnvVars",
-    "version": "3.2.1",
+    "version": "3.2.0",
     "description": "Github action to set environment variables in a workflow",
     "repository": {
         "type": "git",

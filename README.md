@@ -9,6 +9,12 @@
 - Repo-Quality-Rating: 4
 - Repo-Next-Review-Due: 2026-02-19
 
+## ⚠️ **DEPRECATION WARNING** ⚠️
+
+> [!Caution]
+> This GitHub Action is being deprecated and may be removed in the future.  
+> We recommend using [GitHub configuration variables](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/store-information-in-variables#using-the-vars-context-to-access-configuration-variable-values) instead.
+
 ## Motivation
 
 This action provides support for loading a set of environment variables from a file of key value pairs such as the following:

@@ -3871,6 +3871,12 @@ var main = __nccwpck_require__(889);
 
 
 async function action() {
+    core.warning(
+        'Deprecation notice: This action is being deprecated and may be removed in the future. ' +
+            'Please use GitHub configuration variables instead. ' +
+            'See: https://docs.github.com/en/actions/learn-github-actions/variables#using-the-vars-context-to-access-configuration-variable-values'
+    );
+
     const envFile = core.getInput('envFile', { required: true });
     const envFilePath = external_node_path_namespaceObject.join(external_node_process_namespaceObject.cwd(), `${envFile}`);
     const overwrite = core.getBooleanInput('overwrite');
